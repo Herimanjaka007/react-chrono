@@ -26,11 +26,14 @@ const App = () => {
       if (start) {
         setTime(t => {
 
-          if(t["milisecond"] === 99 && t["second"] === 59 && t["hour"]==24){
+          if (t["milisecond"] === 99 && t["second"] === 59 && t["minute"] === 59 && t["hour"] === 23) {
             onResetClic();
           }
+          else if (t["milisecond"] === 99 && t["second"] === 59 && t["minute"] === 59) {
+            return { hour: t["hour"] + 1, minute: 0, second: 0, milisecond: 0 };
+          }
 
-          else if (t["milisecond"] === 99 && t["second"] === 59){
+          else if (t["milisecond"] === 99 && t["second"] === 59) {
             return { ...t, minute: t["minute"] + 1, second: 0, milisecond: 0 };
           }
 

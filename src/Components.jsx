@@ -6,7 +6,7 @@ export const Screen = ({ time }) => {
     </section>
 }
 
-export const Button = ({ buttonValue, bsColor, onClick, isDisable }) => {
+export const Button = ({ buttonValue, bsColor, onClick, isDisable=false }) => {
     return <button
         className={"btn btn-" + bsColor}
         onClick={onClick}
