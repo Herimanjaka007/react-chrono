@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Button from './components/Button';
 import Screen from './components/Screen';
 
 const App = () => {
-  const initialTime = {
-    hour: 0,
-    minute: 0,
-    second: 0,
-    milisecond: 0,
-  }
+  const initialTime = useMemo(() => {
+    return {
+      hour: 0,
+      minute: 0,
+      second: 0,
+      milisecond: 0,
+    }
+  }, []);
 
   const [time, setTime] = useState(initialTime);
   const [start, setStart] = useState(false);
@@ -18,10 +20,10 @@ const App = () => {
     setStart(!start);
   }
 
-  const onResetClic = () => {
+  const onResetClic = useCallback(() => {
     setTime(initialTime);
     setStart(false);
-  }
+  }, [initialTime]);
 
   useEffect(() => {
     const idInterval = setInterval(() => {
@@ -55,7 +57,7 @@ const App = () => {
     return () => {
       clearInterval(idInterval);
     };
-  }, [start]);
+  }, [start, onResetClic]);
 
   return (
     <section className="container border m-5 p-3 mx-auto" style={{ height: "75vh" }}>
