@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Button, Screen } from './Components.jsx';
+import Button from './components/Button';
+import Screen from './components/Screen';
 
 const App = () => {
   const initialTime = {
@@ -10,7 +11,8 @@ const App = () => {
   }
 
   const [time, setTime] = useState(initialTime);
-  const [start, setStart] = useState(false)
+  const [start, setStart] = useState(false);
+
 
   const handleClick = () => {
     setStart(!start);
